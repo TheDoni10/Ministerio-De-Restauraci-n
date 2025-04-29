@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Cristiana</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: minmax(auto, 250px) 1fr;
+            height: auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #1e1e1e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 100%;
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: #5c6bc0;
+            background-color: #333;
+            transform: translateX(5px);
+        }
+
+        .download-app a {
+            display: block;
+            background-color: #5c6bc0;
+            color: #ffffff;
+            padding: 12px 15px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: auto;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-app a:hover {
+            background-color: #3f51b5;
+            transform: scale(1.05);
+        }
+
+        .content {
+            padding: 20px;
+            display: grid;
+            grid-template-rows: auto auto auto auto 1fr;
+            gap: 25px;
+        }
+
+        .hero {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .hero img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 2em;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            gap: 15px;
+        }
+
+        .channel-avatar img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .channel-details h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.2em;
+        }
+
+        .channel-details p {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+       .player-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.player-container img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.player-container img:hover {
+    transform: scale(1.1);
+}
+
+
+      
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
+    margin-left: 20px; /* Un margen fijo desde la izquierda */
+    margin-top: auto; /* Empuja hacia la parte inferior si el contenedor .content es flex */
+    /* Si .content no es flex y quieres pegarlo al final, podrías intentar: */
+    /* position: absolute; */
+    /* bottom: 20px; */
+    /* left: 20px; */
+    /* width: auto; /* Ajusta el ancho al contenido */
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+/* Opcional: Si quieres que estén más a la derecha en pantallas grandes */
+@media (min-width: 768px) {
+    .social-links {
+        margin-left: 70%; /* Vuelve al margen del 70% en pantallas más grandes */
+        /* Si usaste position absolute, podrías ajustar 'left' aquí también */
+        /* left: auto; */
+        /* right: 20px; */
+    }
+}
+
+        .live-stream-container {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .live-stream-container header {
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-stream-container h1 {
+            font-size: 1.1em;
+            margin: 0;
+            color: #ffffff; /* Rojo más llamativo para "EN VIVO" */
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (min-width: 769px) {
+            .video-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo de la Radio">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="inicio.html"><i class="fas fa-home fa-fw"></i> Inicio</a></li>
+                    <li><a href="Religion.html"><i class="fas fa-church fa-fw"></i> Religion</a></li>
+                    <li><a href="Musica.html"><i class="fas fa-music fa-fw"></i> Musica</a></li>
+                    <li><a href="news.html"><i class="fas fa-newspaper fa-fw"></i> News</a></li>
+                    <li><a href="podcasts.html"><i class="fas fa-podcast fa-fw"></i> Podcasts</a></li>
+                    <li><a href="Biblia.html"><i class="fas fa-bible fa-fw"></i> Biblia</a></li>
+                    <li><a href="Ubicacion.html"><i class="fas fa-map-marker-alt fa-fw"></i> Ubicacion</a></li>
+                </ul>
+            </nav>
+            <div class="download-app">
+                <a href="#"><i class="fas fa-download fa-fw"></i> Download app</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="hero">
+                <img src="img/GENERACIONES 2k.png" alt="Imagen del Hero">
+                <h1>Armonia</h1>
+                <p>NOS LLEVA A GRANDES VICTORIAS</p>
+            </div>
+
+            <div class="channel-info">
+                <div class="channel-avatar">
+                    <img src="https://i.ibb.co/p6TgwrW4/logo.png" alt="Avatar del Canal">
+                </div>
+                <div class="channel-details">
+                    <h2>Movimiento Misionero Mundial El Cinco</h2>
+                    <p>Escucha Nuestra Emisora En Vivo</p>
+                    <div class="player-container"> 
+                        <img src="https://i.ibb.co/R4Hdnx1Y/Atras.png" alt="Retroceder">
+                        <img src="https://i.ibb.co/KjM64x6K/Play.png" alt="Reproducir" id="playButtonPlayer">
+                        <img src="https://i.ibb.co/hxQ04hzP/siguiente.png" alt="Adelantar">
+                     
+                    
+                        <div class="timeline">
+                            <div class="timeline-progress">
+                                <div class="timeline-handle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <audio id="audioPlayer" src="https://stream.zeno.fm/wkqjqojf49wtv"></audio>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/IglesiaelCinco" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/iglesiaelcinco" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@ministerioderestauracionmmm" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <section class="live-stream-container">
+                <header>
+                    <h1>📡 Transmisión en Vivo Local (YouTube)</h1>
+                </header>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/live_stream?channel=UCZGAGsLJqyLrM3qXal9cjuA" allowfullscreen title="Transmisión en Vivo YouTube"></iframe>
+                </div>
+            </section>
+
+
+            <section class="live-stream-container">
+                <header>
+                    <h1>📡 Transmisión en Vivo bethel Colombia (YouTube)</h1>
+                </header>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/live_stream?channel=UCOoepFJWo0r2Y1AbrhuFuig" allowfullscreen title="Transmisión en Vivo YouTube"></iframe>
+                </div>
+            </section>
+
+            <section class="live-stream-container">
+                <header>
+                    <h1>📺 Transmisión En Vivo (betheltv.tv)</h1>
+                </header>
+                <div class="video-container">
+                    <video id="alfaPlayer" controls autoplay muted title="Transmisión en Vivo Bethel TV"></video>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const playButtonPlayer = document.getElementById('playButtonPlayer');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        playButtonPlayer.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButtonPlayer.src = 'Icon/boton-de-pausa.png';
+            } else {
+                audioPlayer.pause();
+                playButtonPlayer.src = 'Icon/Play.png';
+            }
+        });
+
+        const video = document.getElementById('alfaPlayer');
+        const m3u8Url = 'https://alfa.betheltv.tv/srt/3_abr/playlist.m3u8'; // Asegúrate de que esta URL sea correcta
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(m3u8Url);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = m3u8Url;
+        }
+    </script>
+</body>
+</html>

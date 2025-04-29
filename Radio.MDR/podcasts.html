@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Podcasts</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      background-color: #1e1e1e;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo img {
+      max-width: 150px;
+      margin-bottom: 30px;
+    }
+    nav ul {
+      list-style: none;
+    }
+    nav li + li {
+      margin-top: 15px;
+    }
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #e0e0e0;
+      transition: .3s;
+    }
+    nav a:hover {
+      background: #333;
+      color: #3f51b5;
+      transform: translateX(5px);
+    }
+    .download-app {
+      margin-top: auto;
+    }
+    .download-app a {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 5px;
+      background: #3f51b5;
+      color: #fff;
+      text-decoration: none;
+      transition: .3s;
+    }
+    .download-app a:hover {
+      background: #303f9f;
+      transform: scale(1.05);
+    }
+
+    /* Contenido principal */
+    main.content {
+      padding: 20px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 20px;
+    }
+
+    /* Hero */
+    .hero img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .hero h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    /* Info del canal */
+    .channel-info {
+      display: flex;
+      align-items: center;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      gap: 20px;
+    }
+    .channel-avatar img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .channel-info .details {
+      flex: 1;
+    }
+    .channel-info .details h2 {
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .channel-info .details p {
+      color: #ccc;
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      transition: .3s;
+    }
+    .social-links a:hover {
+      background: #555;
+    }
+
+    /* Anuncio / Próximamente */
+    /* Anuncio / Próximamente */
+ .announcement {
+   background: #1e1e1e;
+   padding: 20px;
+   border-radius: 8px;
+   margin-bottom: 20px; /* Añadimos un margen inferior para separarlo de la lista de podcasts */
+ }
+
+ .launch-media {
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   margin-top: 15px;
+ }
+
+ .launch-image,
+ .launch-video {
+   flex: 1;
+   min-width: 300px; /* Aseguramos un ancho mínimo para evitar que se colapsen */
+ }
+
+ .launch-image img,
+ .launch-video video {
+   width: 100%;
+   max-height: 300px;
+   object-fit: cover;
+   border-radius: 8px;
+ }
+
+ .launch-details {
+   margin-top: 20px;
+   color: #ccc;
+ }
+
+ /* Contenedor de podcasts */
+ .podcast-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 20px;
+ }
+ .podcast-item {
+   background: #1e1e1e;
+   padding: 15px;
+   border-radius: 8px;
+ }
+ .podcast-item iframe {
+   width: 100%;
+   height: 180px;
+   border-radius: 8px;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+   .container {
+     grid-template-columns: 1fr;
+   }
+   aside.sidebar {
+     flex-direction: row;
+     overflow-x: auto;
+     align-items: center;
+   }
+   nav ul {
+     display: flex;
+     gap: 10px;
+   }
+   .download-app {
+     margin-top: 0;
+     margin-left: auto;
+   }
+   .launch-media {
+     flex-direction: column; /* Apilamos la imagen y el video en pantallas pequeñas */
+   }
+   .launch-image,
+   .launch-video {
+     max-width: 100%; /* Ocupan todo el ancho disponible */
+   }
+   .launch-video video {
+     height: auto; /* La altura se ajusta proporcionalmente */
+   }
+ }
+
+    /* Contenedor de podcasts */
+    .podcast-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .podcast-item {
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .podcast-item iframe {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      aside.sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        align-items: center;
+      }
+      nav ul {
+        display: flex;
+        gap: 10px;
+      }
+      .download-app {
+        margin-top: 0;
+        margin-left: auto;
+      }
+      .video-trailer {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="https://i.ibb.co/p6TgwrW4/logo.png" alt="Logo de la web">
+      </div>
+      <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home fa-fw"></i> Inicio</a></li>
+            <li><a href="Religion.html"><i class="fas fa-church fa-fw"></i> Religion</a></li>
+            <li><a href="Musica.html"><i class="fas fa-music fa-fw"></i> Musica</a></li>
+            <li><a href="news.html"><i class="fas fa-newspaper fa-fw"></i> News</a></li>
+            <li><a href="podcasts.html"><i class="fas fa-podcast fa-fw"></i> Podcasts</a></li>
+            <li><a href="Biblia.html"><i class="fas fa-bible fa-fw"></i> Biblia</a></li>
+            <li><a href="Ubicacion.html"><i class="fas fa-map-marker-alt fa-fw"></i> Ubicacion</a></li>
+        </ul>
+    </nav>
+      <div class="download-app">
+        <a href="#">Descargar App</a>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="content">
+      <!-- Hero -->
+      <section class="hero" id="podcasts">
+        <img src="img/portada-Pocat.png" alt="Portada Podcasts">
+        <h1>Podcasts</h1>
+      </section>
+
+      <!-- Info del canal -->
+      <section class="channel-info">
+        <div class="channel-avatar">
+          <img src="https://cdn-icons-png.flaticon.com/512/665/665152.png" alt="Avatar del canal">
+        </div>
+        <div class="details">
+          <h2>Podcasts Cristianos</h2>
+          <p>Espacio para reflexionar sobre la fe, la Biblia y la vida cristiana.</p>
+        </div>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><img src="icon-fb.svg" alt=""></a>
+          <a href="#" aria-label="Twitter"><img src="icon-tw.svg" alt=""></a>
+          <a href="#" aria-label="YouTube"><img src="icon-yt.svg" alt=""></a>
+        </div>
+      </section>
+
+      <!-- Anuncio -->
+<!-- Sección de Anuncio -->
+<section class="announcement">
+  <h3>¡Próximamente!</h3>
+  <p>Estamos preparando contenido Cristiano y entrevistas inspiradoras. Mantente atento.</p>
+
+  <div class="launch-media">
+    <div class="launch-image">
+      <img src="img/trailer.2.png" alt="Imagen de lanzamiento">
+    </div>
+    <div class="launch-video">
+      <video controls>
+        <source src="Videos/Traileer.1.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+    </div>
+  </div>
+
+  <div class="launch-details">
+    <p><strong>Fecha de estreno:</strong> 02 de Mayo de 2025</p>
+    <p><strong>Hora de estreno:</strong> 6:00 PM (Hora local)</p>
+  </div>
+</section>
+
+      
+      
+<div class="launch-details">
+  <p>"Podcast De YouTube</p>
+ 
+</div>  
+     
+
+      <!-- Lista de podcasts -->
+      <section class="podcast-list">
+       
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/R-9bwLVaXrY?si=HoRSIddy92j6NI8p" title="Podcast 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/pO3wInxLRM8?si=9xOSg_1YYUzJWwl7" title="Podcast 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/zFHnDbDWC1o?si=0FZae0yr7J5NHWft" title="Podcast 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/M_7bsaw6Qo8?si=p8gj8vKeFFSXp-Oh" title="Podcast 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/6sr1mTqH1fY?si=HM9wIMVmRpsD9oqc" title="Podcast 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/DHYyl5zg3S8?si=qxuGBq49YWn-8CQQ" title="Podcast 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/PYilZPzt4ZA?si=EokxF1QXrNfYB61x" title="Podcast 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/ET1WJq3B7OY?si=8cnOw1pgXXAT65-j" title="Podcast 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/A4ZqkXuUvFo?si=DnDd1zjuzVPTs6jU" title="Podcast 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="podcast-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/gGCilGejwnQ?si=qu2Ru0unuJvlm21q" title="Podcast 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicación - Vegachí, Antioquia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #1e1e1e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo img {
+            width: 100%;
+            max-width: 150px;
+            margin-bottom: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: #3f51b5;
+            background-color: #333;
+            transform: translateX(5px);
+        }
+
+        .content {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        .map-container {
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1e1e1e;
+            padding: 10px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            height: 450px;
+        }
+
+        /* Estilos Responsivos para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+
+        .location-section {
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Contenedor Responsive para Publicaciones de Facebook */
+        .facebook-posts {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow-x: auto;
+            gap: 20px;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        .facebook-post {
+            flex: 0 0 auto;
+            width: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .facebook-posts {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .facebook-post {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    
+    .sidebar .logo img {
+      width:100%; max-width:180px;
+    }
+    nav ul { list-style:none; margin:0; padding:0; }
+    nav li { margin-bottom:10px; }
+    nav a {
+      display:block;
+      padding:10px 15px;
+      border-radius:5px;
+      font-weight:600;
+      transition:background .3s, transform .3s;
+    }
+    nav a:hover {
+      background:#333;
+      transform:translateX(5px);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="https://i.ibb.co/p6TgwrW4/logo.png" alt="Logo de la Radio">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home fa-fw"></i> Inicio</a></li>
+                    <li><a href="Religion.html"><i class="fas fa-church fa-fw"></i> Religion</a></li>
+                    <li><a href="Musica.html"><i class="fas fa-music fa-fw"></i> Musica</a></li>
+                    <li><a href="news.html"><i class="fas fa-newspaper fa-fw"></i> News</a></li>
+                    <li><a href="podcasts.html"><i class="fas fa-podcast fa-fw"></i> Podcasts</a></li>
+                    <li><a href="Biblia.html"><i class="fas fa-bible fa-fw"></i> Biblia</a></li>
+                    <li><a href="Ubicacion.html"><i class="fas fa-map-marker-alt fa-fw"></i> Ubicacion</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1>Ubicación Vereda El Cinco - Vegachí, Antioquia</h1>
+            <p>Bienvenidos a Vegachí, Antioquia. Aquí se encuentra nuestra sede y nuestro corazón está aquí para servir a nuestra comunidad.</p>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d65743.62623599567!2d-74.77737548302703!3d6.824383172369078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e439f19af90fcdf%3A0x4f9bd2d0544630f6!2sIglesia%20Del%20Cinco!5e1!3m2!1ses-419!2sco!4v1745011777094!5m2!1ses-419!2sco" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="location-section">
+                <h2>Fotos</h2>
+
+                <div class="facebook-posts">
+                    <div class="facebook-post">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FIglesiaelCinco%2Fposts%2Fpfbid0yZtgfqL6n9KQ87fuUmz7k2oeDC5z7DsFGTmoxRG4wAUDmGSUmr9ZZmKZia59xUhWl&show_text=true&width=500" width="500" height="911" style="border:none;overflow:hidden" allowfullscreen="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="facebook-post">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FIglesiaelCinco%2Fposts%2Fpfbid02LiKbZo1ANMrhZ9eqXpsbDeWdg9nfCHLNyZ3r74A5TiXN7VfgH33dMo4hKrx2JxLQl&show_text=true&width=500" width="500" height="704" style="border:none;overflow:hidden" allowfullscreen="true" loading="lazy"></iframe>
+                    </div>
+                    <div class="facebook-post">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FIglesiaelCinco%2Fposts%2Fpfbid02yTtDiEHESvK2BJb8hZKrHmk12LW7sw3bW39QtxnzuGez3Fc9fcWUYP4xuyWRgprpl&show_text=true&width=500" width="500" height="684" style="border:none;overflow:hidden" allowfullscreen="true" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
