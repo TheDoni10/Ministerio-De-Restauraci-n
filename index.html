@@ -2,27 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Actualizar DonVotex</title>
+  <title>DonVotex - Sistema de Gestión</title>
   <style>
     body {
-      background-color: #111;
-      color: #fff;
+      background-color: #0d1117;
+      color: #c9d1d9; /* Color de texto base ligeramente más suave */
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 60px;
+      padding: 40px 20px;
     }
-
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
     h1 {
       color: #00d9ff;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      font-size: 2.5em;
     }
-
+    h2 {
+      color: #00d9ff;
+      border-bottom: 2px solid #30363d;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
     p {
-      margin-bottom: 30px;
-      color: #ccc;
+      color: #bbb;
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
-
-    #descargarBtn {
+    .btn {
       background-color: #00d9ff;
       color: #000;
       border: none;
@@ -31,58 +40,142 @@
       font-size: 1em;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      margin: 10px;
     }
-
-    #descargarBtn:hover {
-      background-color: #00b3cc;
+    .btn:hover {
+      background-color: #fff;
+      box-shadow: 0 0 15px #00d9ff80;
     }
-
+    #download-section {
+      background-color: #161b22;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #30363d;
+      margin-bottom: 40px;
+    }
     #barraCarga {
-      margin-top: 25px;
+      margin: 20px auto 10px auto;
       width: 100%;
       max-width: 400px;
-      height: 15px;
+      height: 18px;
       background-color: #333;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       display: none;
+      box-shadow: 0 0 8px #00d9ff80;
     }
-
     #progreso {
       height: 100%;
       width: 0%;
-      background-color: #00d9ff;
-      animation: cargar 2s linear forwards;
+      background: linear-gradient(90deg, #00d9ff, #00aaff);
+      transition: width 0.2s ease;
     }
-
-    @keyframes cargar {
-      0% { width: 0%; }
-      100% { width: 100%; }
+    #info {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #88f;
+      min-height: 1.2em;
+    }
+    .info-section {
+        text-align: left;
+        margin-top: 30px;
+    }
+    .info-section ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .info-section ul li {
+        background-color: #161b22;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-left: 4px solid #00d9ff;
+        border-radius: 0 8px 8px 0;
+    }
+    .future-notice {
+        background-color: #2c2c00;
+        border: 1px solid #a3a300;
+        color: #ffffa1;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Actualizar DonVotex</h1>
-  <p>Haz clic en el botón para descargar la versión 2.0</p>
+  <div class="container">
+    <h1>Bienvenido a DonVotex</h1>
+    <p>La solución definitiva para la gestión y análisis de datos de alto rendimiento.</p>
 
-  <button id="descargarBtn" onclick="descargar()">⬇ Descargar v2.0</button>
+    <div id="download-section">
+      <h2>Descargar Versión 2025</h2>
+      <p>Selecciona el formato de descarga que prefieras.</p>
+      <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo Comprimido (.zip)</button>
+      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Instalador Automático (.exe)</button>
+      <div id="barraCarga"><div id="progreso"></div></div>
+      <div id="info"></div>
+    </div>
 
-  <div id="barraCarga">
-    <div id="progreso"></div>
+    <div class="info-section">
+      <h2>Acerca de DonVotex</h2>
+      <p>DonVotex es una suite de software diseñada para optimizar flujos de trabajo, automatizar la recolección de datos y proporcionar análisis predictivos mediante un motor de IA propietario. Es la herramienta ideal para empresas que buscan transformar datos crudos en decisiones estratégicas.</p>
+      
+      <h2>Novedades de la Versión 2025</h2>
+      <ul>
+        <li><strong>Nuevo Motor de IA "QuantumLeap":</strong> Análisis de datos hasta un 300% más rápido que en versiones anteriores.</li>
+        <li><strong>Visualizaciones Dinámicas:</strong> Hemos añadido más de 20 nuevos tipos de gráficos interactivos para tus reportes.</li>
+        <li><strong>Integración Mejorada:</strong> Conectividad nativa y sin esfuerzo con plataformas como Excel, SQL Server y Power BI.</li>
+        <li><strong>Seguridad Reforzada:</strong> Implementación de cifrado de extremo a extremo AES-256 para garantizar la máxima protección de tus datos.</li>
+      </ul>
+
+      <div class="future-notice">
+        <h3><strong>Próximamente: DonVotex 2026</strong></h3>
+        <p>¡Ya estamos trabajando en el futuro! La versión 2026 está programada para ser lanzada durante las <strong>primeras semanas de agosto de 2026</strong>. Incluirá integración completa con la nube, herramientas de colaboración en tiempo real y mucho más. <br><strong>¡Mantente pendiente para más noticias!</strong></p>
+      </div>
+    </div>
   </div>
 
   <script>
-    function descargar() {
-      // Mostrar barra de carga
-      document.getElementById("barraCarga").style.display = "block";
-
-      // Espera 2 segundos para animación y luego descarga
-      setTimeout(function () {
-        const url = "https://drive.google.com/uc?export=download&id=1vL38S91gxs3N-rHjigXAqpGN6DliAm7i";
-        window.open(url, "_blank");
-      }, 2000);
+    const archivos = {
+      zip: "server.zip",
+      exe: "instalador.exe"
+    };
+    let descargaEnProgreso = false;
+    function iniciarDescarga(tipo) {
+      if (descargaEnProgreso) {
+        alert("Por favor, espera a que la descarga actual termine.");
+        return;
+      }
+      descargaEnProgreso = true;
+      const nombreArchivo = archivos[tipo];
+      const barra = document.getElementById("barraCarga");
+      const progreso = document.getElementById("progreso");
+      const info = document.getElementById("info");
+      barra.style.display = "block";
+      info.style.display = "block";
+      progreso.style.width = "0%";
+      info.innerHTML = `Preparando descarga para ${nombreArchivo}...`;
+      let porcentaje = 0;
+      const intervalo = setInterval(() => {
+        porcentaje += Math.random() * 5 + 1;
+        if (porcentaje >= 100) porcentaje = 100;
+        progreso.style.width = porcentaje + "%";
+        info.innerHTML = `Simulando descarga... ${Math.round(porcentaje)}%`;
+        if (porcentaje >= 100) {
+          clearInterval(intervalo);
+          info.innerHTML = `✔ ¡Descarga de ${nombreArchivo} iniciada!`;
+          const link = document.createElement('a');
+          link.href = nombreArchivo;
+          link.download = nombreArchivo;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(() => {
+            descargaEnProgreso = false;
+          }, 2000);
+        }
+      }, 100);
     }
   </script>
 
