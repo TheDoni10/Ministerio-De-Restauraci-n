@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>DonVotex - Sistema de Votaciones</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon (debes poner el archivo Icono.ico junto al HTML o dar una URL pública) -->
+  <link rel="icon" type="image/x-icon" href="Icono.ico">
   <style>
     :root {
       --color-fondo: #0d1117;
@@ -18,7 +20,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--color-fondo);
       color: var(--color-texto);
-      overflow: hidden;
+      overflow-x: hidden; /* ✅ Permitir scroll vertical */
     }
 
     .background-anim {
@@ -65,7 +67,7 @@
       font-size: 2.8em;
       color: var(--color-primario);
       text-shadow: 0 0 10px #00d9ff;
-      animation: zoomIn 1s ease-out;
+      animation: zoomIn 1.2s ease-out;
     }
 
     @keyframes zoomIn {
@@ -177,7 +179,6 @@
 
   <!-- Fondo animado -->
   <div class="background-anim">
-    <!-- Burbujas aleatorias -->
     <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
     <div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
     <div class="bubble" style="left: 40%; animation-delay: 4s;"></div>
