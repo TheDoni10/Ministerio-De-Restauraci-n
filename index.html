@@ -168,27 +168,29 @@
         <li><strong>Corrección General de Errores:</strong> ¡Y lo mejor! Ahora puedes usar DonVotex sin necesidad de internet.</li>
       </ul>
 
-     <div class="future-notice">
-  <h3><strong>En desarrollo: DonVotex Web 2026</strong></h3>
-  <p>¡Seguimos avanzando! Actualmente estamos implementando la nueva <strong>versión web de DonVotex</strong>, pensada para funcionar desde cualquier navegador sin necesidad de instalar nada.</p>
-  <p>Entre las mejoras planeadas se incluyen:</p>
-  <ul>
-    <li>✅ Acceso multiplataforma desde móviles, tabletas y computadores.</li>
-    <li>✅ Sincronización automática de resultados entre sedes.</li>
-    <li>✅ Nuevos controles de seguridad para el registro y autenticación de votantes.</li>
-    <li>✅ Panel de seguimiento en tiempo real para observadores.</li>
-  </ul>
-  <p><strong>¡Lanzamiento estimado para agosto de 2026!</strong><br>Permanece atento a nuestras redes y canal de comunicación para enterarte de todas las novedades.</p>
-  <hr style="margin-top: 20px; border-color: #a3a30040;">
-  <p style="font-size: 0.9em; color: #000000;"><em>Reservado a Doni Beltrán Villalba ©</em></p>
-</div>
-
+      <div class="future-notice">
+        <h3><strong>En desarrollo: DonVotex Web 2026</strong></h3>
+        <p>¡Seguimos avanzando! Actualmente estamos implementando la nueva <strong>versión web de DonVotex</strong>, pensada para funcionar desde cualquier navegador sin necesidad de instalar nada.</p>
+        <ul>
+          <li>✅ Acceso multiplataforma desde móviles, tabletas y computadores.</li>
+          <li>✅ Sincronización automática de resultados entre sedes.</li>
+          <li>✅ Nuevos controles de seguridad para el registro y autenticación de votantes.</li>
+          <li>✅ Panel de seguimiento en tiempo real para observadores.</li>
+        </ul>
+        <p><strong>¡Lanzamiento estimado para agosto de 2026!</strong><br>Permanece atento a nuestras redes y canal de comunicación para enterarte de todas las novedades.</p>
+        <hr style="margin-top: 20px; border-color: #a3a30040;">
+        <p style="font-size: 0.9em; color: #000000;"><em>Reservado a Doni Beltrán Villalba ©</em></p>
+      </div>
+    </div>
+  </div>
 
   <script>
     const archivos = {
-      zip: "https://drive.google.com/file/d/1XO-u3qN2s5T6foNNYlnZ6B2sEIhGu18Y/view?usp=sharing",
+      // 👇 Usa el ID real del archivo (extraído del link "compartir")
+      zip: "https://drive.google.com/file/d/1WppoMaXxQ9l09NQbaX8p6HMe_fV77Xz4/view?usp=sharing",
       exe: "https://drive.google.com/file/d/1X1f34P6Sbvb5ighuK8pI8MDRkA_BzX48/view?usp=sharing"
     };
+
     let descargaEnProgreso = false;
 
     function iniciarDescarga(tipo) {
@@ -197,36 +199,40 @@
         return;
       }
       descargaEnProgreso = true;
-      const nombreArchivo = archivos[tipo];
+
+      const url = archivos[tipo];
       const barra = document.getElementById("barraCarga");
       const progreso = document.getElementById("progreso");
       const info = document.getElementById("info");
+
       barra.style.display = "block";
       info.style.display = "block";
       progreso.style.width = "0%";
-      info.innerHTML = `Preparando descarga para ${nombreArchivo}...`;
+      info.innerHTML = `Preparando descarga...`;
 
       let porcentaje = 0;
       const intervalo = setInterval(() => {
-        porcentaje += Math.random() * 5 + 1;
+        porcentaje += Math.random() * 6 + 3;
         if (porcentaje >= 100) porcentaje = 100;
         progreso.style.width = porcentaje + "%";
         info.innerHTML = `Iniciando descarga... ${Math.round(porcentaje)}%`;
 
         if (porcentaje >= 100) {
           clearInterval(intervalo);
-          info.innerHTML = `✔ ¡Descarga de ${nombreArchivo} iniciada!`;
+          info.innerHTML = `✔ ¡Descarga iniciada!`;
+
           const link = document.createElement('a');
-          link.href = nombreArchivo;
-          link.download = nombreArchivo;
+          link.href = url;
+          link.setAttribute('download', '');
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+
           setTimeout(() => {
             descargaEnProgreso = false;
           }, 2000);
         }
-      }, 100);
+      }, 120);
     }
   </script>
 
