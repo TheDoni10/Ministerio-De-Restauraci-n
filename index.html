@@ -3,60 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>DonVotex - Sistema de Votaciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      overflow-x: hidden;
+    :root {
+      --color-fondo: #0d1117;
+      --color-texto: #c9d1d9;
+      --color-primario: #00d9ff;
+      --color-secundario: #161b22;
     }
 
-    * {
-      box-sizing: border-box;
+    body {
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
     }
 
     .container {
       max-width: 800px;
-      margin: 0 auto;
-      animation: fadeIn 1.2s ease-out;
+      margin: auto;
+      animation: fadeIn 1s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1, h2 {
-      color: #00d9ff;
+    h1 {
+      color: var(--color-primario);
       margin-bottom: 10px;
-      transition: all 0.5s ease;
     }
 
-    h1:hover {
-      text-shadow: 0 0 10px #00d9ff;
-      transform: scale(1.05);
+    h2 {
+      color: var(--color-primario);
+      margin: 30px 0 10px;
     }
 
     p {
       color: #bbb;
-      margin-bottom: 20px;
       line-height: 1.6;
-      transition: color 0.3s ease;
+      margin-bottom: 20px;
     }
 
     .btn {
-      background-color: #00d9ff;
+      background-color: var(--color-primario);
       color: #000;
-      border: none;
       padding: 12px 24px;
+      margin: 10px;
+      border: none;
       border-radius: 10px;
       font-size: 1em;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease, transform 0.2s;
-      margin: 10px;
+      transition: all 0.3s ease;
     }
 
     .btn:hover {
@@ -66,31 +63,29 @@
     }
 
     #download-section {
-      background-color: #161b22;
+      background-color: var(--color-secundario);
       padding: 30px;
       border-radius: 15px;
       border: 1px solid #30363d;
       margin-bottom: 40px;
-      animation: fadeIn 1.5s ease-out;
     }
 
     #barraCarga {
-      margin: 20px auto 10px auto;
       width: 100%;
       max-width: 400px;
       height: 18px;
-      background-color: #333;
+      margin: 20px auto 10px;
+      background: #333;
       border-radius: 10px;
       overflow: hidden;
       display: none;
-      box-shadow: 0 0 8px #00d9ff80;
     }
 
     #progreso {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #00d9ff, #00aaff);
-      transition: width 0.4s ease-in-out;
+      background: linear-gradient(90deg, var(--color-primario), #00aaff);
+      transition: width 0.4s ease;
     }
 
     #info {
@@ -98,46 +93,33 @@
       font-size: 0.9em;
       color: #88f;
       min-height: 1.2em;
-      transition: all 0.3s ease;
     }
 
-    .info-section {
-      text-align: left;
-      margin-top: 30px;
-      animation: fadeIn 1.8s ease-out;
-    }
-
-    .info-section ul {
+    ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      text-align: left;
     }
 
-    .info-section ul li {
-      background-color: #161b22;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-left: 4px solid #00d9ff;
+    ul li {
+      background: var(--color-secundario);
+      padding: 12px;
+      margin: 10px 0;
+      border-left: 4px solid var(--color-primario);
       border-radius: 0 8px 8px 0;
-      transition: transform 0.3s ease;
-    }
-
-    .info-section ul li:hover {
-      transform: translateX(10px);
     }
 
     .future-notice {
-      background-color: #2c2c00;
-      border: 1px solid #a3a300;
+      background: #2c2c00;
       color: #ffffa1;
       padding: 20px;
       border-radius: 10px;
-      margin-top: 20px;
-      animation: pulse 3s infinite;
+      border: 1px solid #a3a300;
     }
 
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 8px #a3a30050; }
-      50% { box-shadow: 0 0 18px #ffffa180; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -145,56 +127,48 @@
 
   <div class="container">
     <h1>Bienvenido a DonVotex</h1>
-    <p>La plataforma robusta y segura para la gestión de procesos electorales y votaciones.</p>
+    <p>La plataforma segura para la gestión de votaciones estudiantiles.</p>
 
     <div id="download-section">
-      <h2>Descargar Versión 2025</h2>
-      <p>Selecciona el formato de descarga que prefieras.</p>
-      <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo Comprimido (.zip)</button>
-      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Instalador Automático (.exe)</button>
+      <h2>Descargar DonVotex 2025</h2>
+      <p>Selecciona el formato que desees:</p>
+      <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo ZIP</button>
+      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Instalador EXE</button>
+
       <div id="barraCarga"><div id="progreso"></div></div>
       <div id="info"></div>
     </div>
 
-    <div class="info-section">
-      <h2>Acerca de DonVotex</h2>
-      <p>DonVotex es una suite de software diseñada para organizar, ejecutar y supervisar votaciones de forma transparente y eficiente. Permite gestionar candidatos, registrar votantes y generar reportes de resultados con total fiabilidad, siendo la solución ideal para organizaciones, empresas y comunidades.</p>
-      
-      <h2>Novedades de la Versión 2025</h2>
-      <ul>
-        <li><strong>Módulo de Votaciones por Candidatos:</strong> Configure procesos electorales completos, desde el registro de candidatos hasta la tabulación de resultados en tiempo real.</li>
-        <li><strong>Interfaz de Usuario Refinada:</strong> Se ha rediseñado el panel de administración para una navegación más intuitiva y una gestión más sencilla.</li>
-        <li><strong>Optimización de Rendimiento:</strong> El sistema es ahora más rápido y estable, garantizando un funcionamiento fluido incluso con un gran número de votantes.</li>
-        <li><strong>Corrección General de Errores:</strong> ¡Y lo mejor! Ahora puedes usar DonVotex sin necesidad de internet.</li>
-      </ul>
+    <h2>¿Qué hay de nuevo?</h2>
+    <ul>
+      <li><strong>🗳 Módulo de candidatos:</strong> registro y votación.</li>
+      <li><strong>⚡ Más rápido y optimizado:</strong> sin internet.</li>
+      <li><strong>🛡 Corrección de errores:</strong> mayor seguridad.</li>
+    </ul>
 
-      <div class="future-notice">
-        <h3><strong>En desarrollo: DonVotex Web 2026</strong></h3>
-        <p>¡Seguimos avanzando! Actualmente estamos implementando la nueva <strong>versión web de DonVotex</strong>, pensada para funcionar desde cualquier navegador sin necesidad de instalar nada.</p>
-        <ul>
-          <li>✅ Acceso multiplataforma desde móviles, tabletas y computadores.</li>
-          <li>✅ Sincronización automática de resultados entre sedes.</li>
-          <li>✅ Nuevos controles de seguridad para el registro y autenticación de votantes.</li>
-          <li>✅ Panel de seguimiento en tiempo real para observadores.</li>
-        </ul>
-        <p><strong>¡Lanzamiento estimado para agosto de 2026!</strong><br>Permanece atento a nuestras redes y canal de comunicación para enterarte de todas las novedades.</p>
-        <hr style="margin-top: 20px; border-color: #a3a30040;">
-        <p style="font-size: 0.9em; color: #000000;"><em>Reservado a Doni Beltrán Villalba ©</em></p>
-      </div>
+    <div class="future-notice">
+      <h3>🔧 Próximamente: DonVotex Web 2026</h3>
+      <p>Versión online, accesible desde cualquier dispositivo.</p>
+      <ul>
+        <li>✅ Navegación desde celular o PC.</li>
+        <li>✅ Resultados en tiempo real.</li>
+        <li>✅ Panel para observadores.</li>
+      </ul>
+      <p style="margin-top: 10px; font-size: 0.9em;"><em>© Doni Beltrán Villalba</em></p>
     </div>
   </div>
 
   <script>
     const archivos = {
       zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&st=mctlnaxy&raw=1",
-      exe: "https://www.dropbox.com/scl/fi/59jr67adc7xomhymf78f5/InstaladorDonVotex.exe?rlkey=485licu91sky9jyapk01554mg&st=v55stdcn&dl=0"
+      exe: "https://www.dropbox.com/scl/fi/59jr67adc7xomhymf78f5/InstaladorDonVotex.exe?rlkey=485licu91sky9jyapk01554mg&st=v55stdcn&raw=1"
     };
 
     let descargaEnProgreso = false;
 
     function iniciarDescarga(tipo) {
       if (descargaEnProgreso) {
-        alert("Por favor espera que termine la descarga anterior.");
+        alert("⏳ Espera que termine la descarga anterior.");
         return;
       }
       descargaEnProgreso = true;
@@ -210,10 +184,10 @@
 
       let porcentaje = 0;
       const animacion = setInterval(() => {
-        porcentaje += Math.random() * 10 + 5;
+        porcentaje += Math.random() * 15 + 5;
         if (porcentaje >= 100) porcentaje = 100;
         progreso.style.width = porcentaje + "%";
-        info.innerHTML = `Iniciando descarga... ${Math.round(porcentaje)}%`;
+        info.innerHTML = `Descargando... ${Math.round(porcentaje)}%`;
 
         if (porcentaje >= 100) {
           clearInterval(animacion);
