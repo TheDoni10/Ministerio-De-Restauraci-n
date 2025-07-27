@@ -9,27 +9,30 @@
       --color-fondo: #0d1117;
       --color-texto: #c9d1d9;
       --color-primario: #00d9ff;
-      --color-secundario: #161b22;
+      --glass: rgba(255, 255, 255, 0.05);
     }
 
     body {
-      background-color: var(--color-fondo);
+      background: linear-gradient(120deg, #0d1117, #0c0f1a);
       color: var(--color-texto);
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 40px 20px;
       text-align: center;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
       animation: fadeIn 1s ease-out;
     }
 
     h1 {
       color: var(--color-primario);
+      font-size: 2.6em;
       margin-bottom: 10px;
+      text-shadow: 0 0 5px #00d9ff88;
     }
 
     h2 {
@@ -44,30 +47,32 @@
     }
 
     .btn {
-      background-color: var(--color-primario);
+      background: linear-gradient(145deg, #00d9ff, #0099cc);
       color: #000;
-      padding: 12px 24px;
+      padding: 14px 28px;
       margin: 10px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1em;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px #00d9ff60;
     }
 
     .btn:hover {
-      background-color: #fff;
-      box-shadow: 0 0 15px #00d9ff80;
-      transform: scale(1.05);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px #00d9ff99;
     }
 
     #download-section {
-      background-color: var(--color-secundario);
+      background-color: var(--glass);
+      backdrop-filter: blur(10px);
       padding: 30px;
       border-radius: 15px;
       border: 1px solid #30363d;
       margin-bottom: 40px;
+      box-shadow: 0 0 15px #00d9ff20;
     }
 
     #barraCarga {
@@ -102,19 +107,25 @@
     }
 
     ul li {
-      background: var(--color-secundario);
+      background: rgba(255,255,255,0.02);
       padding: 12px;
       margin: 10px 0;
       border-left: 4px solid var(--color-primario);
       border-radius: 0 8px 8px 0;
+      transition: background 0.3s ease;
+    }
+
+    ul li:hover {
+      background: rgba(0,217,255,0.05);
     }
 
     .future-notice {
-      background: #2c2c00;
+      background: #2c2c00cc;
       color: #ffffa1;
       padding: 20px;
       border-radius: 10px;
       border: 1px solid #a3a300;
+      margin-top: 50px;
     }
 
     @keyframes fadeIn {
@@ -126,42 +137,42 @@
 <body>
 
   <div class="container">
-    <h1>Bienvenido a DonVotex</h1>
-    <p>La plataforma segura para la gestión de votaciones estudiantiles.</p>
+    <h1>DonVotex 2025</h1>
+    <p>La plataforma moderna, rápida y segura para votaciones estudiantiles.</p>
 
     <div id="download-section">
-      <h2>Descargar DonVotex 2025</h2>
-      <p>Selecciona el formato que desees:</p>
-      <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo ZIP</button>
-      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Instalador EXE</button>
+      <h2>Descargar</h2>
+      <p>Elige un formato para comenzar la descarga directa:</p>
+      <button class="btn" onclick="iniciarDescarga('zip')">📦 ZIP</button>
+      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ EXE</button>
 
       <div id="barraCarga"><div id="progreso"></div></div>
       <div id="info"></div>
     </div>
 
-    <h2>¿Qué hay de nuevo?</h2>
+    <h2>Novedades</h2>
     <ul>
-      <li><strong>🗳 Módulo de candidatos:</strong> registro y votación.</li>
-      <li><strong>⚡ Más rápido y optimizado:</strong> sin internet.</li>
-      <li><strong>🛡 Corrección de errores:</strong> mayor seguridad.</li>
+      <li><strong>🗳 Módulo de candidatos:</strong> registro y votación inteligente.</li>
+      <li><strong>⚡ Ultra rápido:</strong> sin internet ni instalación complicada.</li>
+      <li><strong>🛡 Mayor seguridad:</strong> validación y protección mejorada.</li>
     </ul>
 
     <div class="future-notice">
-      <h3>🔧 Próximamente: DonVotex Web 2026</h3>
-      <p>Versión online, accesible desde cualquier dispositivo.</p>
+      <h3>🔮 DonVotex Web 2026</h3>
+      <p>Estamos implementando la versión web accesible desde cualquier dispositivo.</p>
       <ul>
-        <li>✅ Navegación desde celular o PC.</li>
-        <li>✅ Resultados en tiempo real.</li>
-        <li>✅ Panel para observadores.</li>
+        <li>📱 Compatible con celular y PC.</li>
+        <li>⏱ Resultados en tiempo real.</li>
+        <li>🧑‍💻 Panel exclusivo para jurados y observadores.</li>
       </ul>
-      <p style="margin-top: 10px; font-size: 0.9em;"><em>© Doni Beltrán Villalba</em></p>
+      <p style="margin-top: 10px; font-size: 0.9em;"><em>Reservado a Doni Beltrán Villalba</em></p>
     </div>
   </div>
 
   <script>
     const archivos = {
-      zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&st=mctlnaxy&raw=1",
-      exe: "https://www.dropbox.com/scl/fi/59jr67adc7xomhymf78f5/InstaladorDonVotex.exe?rlkey=485licu91sky9jyapk01554mg&st=v55stdcn&raw=1"
+      zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&raw=1",
+      exe: "https://www.dropbox.com/scl/fi/59jr67adc7xomhymf78f5/InstaladorDonVotex.exe?rlkey=485licu91sky9jyapk01554mg&raw=1"
     };
 
     let descargaEnProgreso = false;
@@ -171,6 +182,7 @@
         alert("⏳ Espera que termine la descarga anterior.");
         return;
       }
+
       descargaEnProgreso = true;
 
       const url = archivos[tipo];
@@ -180,18 +192,18 @@
 
       barra.style.display = "block";
       progreso.style.width = "0%";
-      info.innerHTML = "Preparando descarga...";
+      info.innerHTML = "⏳ Preparando archivo...";
 
       let porcentaje = 0;
       const animacion = setInterval(() => {
-        porcentaje += Math.random() * 15 + 5;
+        porcentaje += Math.random() * 18 + 5;
         if (porcentaje >= 100) porcentaje = 100;
         progreso.style.width = porcentaje + "%";
         info.innerHTML = `Descargando... ${Math.round(porcentaje)}%`;
 
         if (porcentaje >= 100) {
           clearInterval(animacion);
-          info.innerHTML = "✔ ¡Descarga iniciada!";
+          info.innerHTML = "✔ Descarga iniciada";
           const link = document.createElement('a');
           link.href = url;
           link.setAttribute('download', '');
@@ -204,7 +216,7 @@
             barra.style.display = "none";
             info.innerHTML = "";
             descargaEnProgreso = false;
-          }, 3000);
+          }, 2000);
         }
       }, 100);
     }
