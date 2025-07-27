@@ -220,58 +220,59 @@
     </div>
   </div>
 
-  <script>
-    const archivos = {
-      zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&raw=1",
-      exe: "https://www.dropbox.com/scl/fi/59jr67adc7xomhymf78f5/InstaladorDonVotex.exe?rlkey=485licu91sky9jyapk01554mg&raw=1"
-    };
+<script>
+  const archivos = {
+    zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&raw=1",
+    exe: "https://www.dropbox.com/scl/fi/jwkqtki8dzr399xl85dj8/InstaladorDonVotex.exe?rlkey=8glwu71s1jyopzw5jxowpkz94&raw=1"
+  };
 
-    let descargaEnProgreso = false;
+  let descargaEnProgreso = false;
 
-    function iniciarDescarga(tipo) {
-      if (descargaEnProgreso) {
-        alert("⏳ Espera que termine la descarga anterior.");
-        return;
-      }
-
-      descargaEnProgreso = true;
-
-      const url = archivos[tipo];
-      const barra = document.getElementById("barraCarga");
-      const progreso = document.getElementById("progreso");
-      const info = document.getElementById("info");
-
-      barra.style.display = "block";
-      progreso.style.width = "0%";
-      info.innerHTML = "⏳ Preparando archivo...";
-
-      let porcentaje = 0;
-      const animacion = setInterval(() => {
-        porcentaje += Math.random() * 18 + 5;
-        if (porcentaje >= 100) porcentaje = 100;
-        progreso.style.width = porcentaje + "%";
-        info.innerHTML = `Descargando... ${Math.round(porcentaje)}%`;
-
-        if (porcentaje >= 100) {
-          clearInterval(animacion);
-          info.innerHTML = "✔ Descarga iniciada";
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', '');
-          link.style.display = 'none';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-
-          setTimeout(() => {
-            barra.style.display = "none";
-            info.innerHTML = "";
-            descargaEnProgreso = false;
-          }, 2000);
-        }
-      }, 100);
+  function iniciarDescarga(tipo) {
+    if (descargaEnProgreso) {
+      alert("⏳ Espera que termine la descarga anterior.");
+      return;
     }
-  </script>
+
+    descargaEnProgreso = true;
+
+    const url = archivos[tipo];
+    const barra = document.getElementById("barraCarga");
+    const progreso = document.getElementById("progreso");
+    const info = document.getElementById("info");
+
+    barra.style.display = "block";
+    progreso.style.width = "0%";
+    info.innerHTML = "⏳ Preparando archivo...";
+
+    let porcentaje = 0;
+    const animacion = setInterval(() => {
+      porcentaje += Math.random() * 18 + 5;
+      if (porcentaje >= 100) porcentaje = 100;
+      progreso.style.width = porcentaje + "%";
+      info.innerHTML = `Descargando... ${Math.round(porcentaje)}%`;
+
+      if (porcentaje >= 100) {
+        clearInterval(animacion);
+        info.innerHTML = "✔ Descarga iniciada";
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', '');
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        setTimeout(() => {
+          barra.style.display = "none";
+          info.innerHTML = "";
+          descargaEnProgreso = false;
+        }, 2000);
+      }
+    }, 100);
+  }
+</script>
+
 
 </body>
 </html>
