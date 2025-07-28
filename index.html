@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>DonVotex - Sistema de Votaciones</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon (debes poner el archivo Icono.ico junto al HTML o dar una URL pública) -->
   <link rel="icon" type="image/x-icon" href="https://i.ibb.co/wZ0PH190/vote-icono.png">
   <style>
     :root {
@@ -20,7 +19,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--color-fondo);
       color: var(--color-texto);
-      overflow-x: hidden; /* ✅ Permitir scroll vertical */
+      overflow-x: hidden;
     }
 
     .background-anim {
@@ -45,14 +44,8 @@
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
     .container {
@@ -71,14 +64,8 @@
     }
 
     @keyframes zoomIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     h2 {
@@ -111,7 +98,7 @@
       box-shadow: 0 6px 20px #00d9ff99;
     }
 
-    #download-section {
+    #download-section, #patch-section {
       background-color: var(--glass);
       backdrop-filter: blur(10px);
       padding: 30px;
@@ -177,53 +164,68 @@
 </head>
 <body>
 
-  <!-- Fondo animado -->
-  <div class="background-anim">
-    <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
-    <div class="bubble" style="left: 40%; animation-delay: 4s;"></div>
-    <div class="bubble" style="left: 60%; animation-delay: 1s;"></div>
-    <div class="bubble" style="left: 75%; animation-delay: 3s;"></div>
-    <div class="bubble" style="left: 90%; animation-delay: 5s;"></div>
+<div class="background-anim">
+  <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
+  <div class="bubble" style="left: 40%; animation-delay: 4s;"></div>
+  <div class="bubble" style="left: 60%; animation-delay: 1s;"></div>
+  <div class="bubble" style="left: 75%; animation-delay: 3s;"></div>
+  <div class="bubble" style="left: 90%; animation-delay: 5s;"></div>
+</div>
+
+<div class="container">
+  <h1>DonVotex 2025</h1>
+  <p>La plataforma moderna, rápida y segura para votaciones estudiantiles.</p>
+
+  <div id="download-section">
+    <h2>Descargar</h2>
+    <p>Elige un formato para comenzar la descarga directa:</p>
+    <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo.Zip</button>
+    <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Archivo.Exe</button>
+    <div id="barraCarga"><div id="progreso"></div></div>
+    <div id="info"></div>
   </div>
 
-  <div class="container">
-    <h1>DonVotex 2025</h1>
-    <p>La plataforma moderna, rápida y segura para votaciones estudiantiles.</p>
-
-    <div id="download-section">
-      <h2>Descargar</h2>
-      <p>Elige un formato para comenzar la descarga directa:</p>
-      <button class="btn" onclick="iniciarDescarga('zip')">📦 Archivo.Zip</button>
-      <button class="btn" onclick="iniciarDescarga('exe')">⚙️ Archivo.Exe</button>
-
-      <div id="barraCarga"><div id="progreso"></div></div>
-      <div id="info"></div>
-    </div>
-
-    <h2>Novedades</h2>
+  <div id="patch-section">
+    <h2>🛠 Parches de Error</h2>
+    <p>Si tu sistema presenta fallas como:</p>
     <ul>
-      <li><strong>🗳 Módulo de candidatos:</strong> registro y votación inteligente.</li>
-      <li><strong>⚡ Ultra rápido:</strong> sin internet ni instalación complicada.</li>
-      <li><strong>🛡 Mayor seguridad:</strong> validación y protección mejorada.</li>
+      <li>Errores al iniciar.</li>
+      <li>Fallas en el conteo de votos o candidatos.</li>
+      <li>Problemas de compatibilidad (bus, navegador o pantalla negra).</li>
     </ul>
-
-    <div class="future-notice">
-      <h3>🔮 DonVotex Web 2026</h3>
-      <p>Estamos implementando la versión web accesible desde cualquier dispositivo.</p>
-      <ul>
-        <li>📱 Compatible con celular y PC.</li>
-        <li>⏱ Resultados en tiempo real.</li>
-        <li>🧑‍💻 Panel exclusivo para jurados y observadores.</li>
-      </ul>
-      <p style="margin-top: 10px; font-size: 0.9em;"><em>Reservado a Doni Beltrán Villalba</em></p>
-    </div>
+    <p>1. Haz clic en el botón <strong>"Descargar Parche .exe"</strong>.</p>
+    <p>2. Ejecuta el archivo y sigue las instrucciones.</p>
+    <p>3. Si no se descarga nada, aparecerá un aviso diciendo que no hay parches disponibles.</p>
+    <p>4. Si persiste el problema, escríbenos al WhatsApp <strong>+57 3016811972</strong>.</p>
+    <button class="btn" onclick="descargarParche()">🔧 Descargar Parche .exe</button>
+    <div id="avisoParche" style="margin-top: 15px; color: #f99;"></div>
   </div>
+
+  <h2>Novedades</h2>
+  <ul>
+    <li><strong>🗳 Módulo de candidatos:</strong> registro y votación inteligente.</li>
+    <li><strong>⚡ Ultra rápido:</strong> sin internet ni instalación complicada.</li>
+    <li><strong>🛡 Mayor seguridad:</strong> validación y protección mejorada.</li>
+  </ul>
+
+  <div class="future-notice">
+    <h3>🔮 DonVotex Web 2026</h3>
+    <p>Estamos implementando la versión web accesible desde cualquier dispositivo.</p>
+    <ul>
+      <li>📱 Compatible con celular y PC.</li>
+      <li>⏱ Resultados en tiempo real.</li>
+      <li>🧑‍💻 Panel exclusivo para jurados y observadores.</li>
+    </ul>
+    <p style="margin-top: 10px; font-size: 0.9em;"><em>Reservado a Doni Beltrán Villalba</em></p>
+  </div>
+</div>
 
 <script>
   const archivos = {
     zip: "https://www.dropbox.com/scl/fi/av0q1tx1rgzkq3mg1ppmh/server.zip?rlkey=w0mjdi573tup1t6ies5qohbio&raw=1",
-    exe: "https://www.dropbox.com/scl/fi/ia6kr2yht71ktd04e4tlo/InstaladorDonVotex.exe?rlkey=pg2emnumfa3co883g3tteezrp&raw=1"
+    exe: "https://www.dropbox.com/scl/fi/ia6kr2yht71ktd04e4tlo/InstaladorDonVotex.exe?rlkey=pg2emnumfa3co883g3tteezrp&raw=1",
+    parche: "https://www.dropbox.com/scl/fi/xxxxx/parche.exe?raw=1"
   };
 
   let descargaEnProgreso = false;
@@ -271,8 +273,27 @@
       }
     }, 100);
   }
+
+  function descargarParche() {
+    const url = archivos.parche;
+    const aviso = document.getElementById("avisoParche");
+    fetch(url, { method: 'HEAD' })
+      .then(resp => {
+        if (resp.ok) {
+          const a = document.createElement("a");
+          a.href = url;
+          a.setAttribute("download", "ParcheDonVotex.exe");
+          a.click();
+          aviso.innerText = "✔ Parche descargado correctamente.";
+          aviso.style.color = "#0f0";
+        } else {
+          aviso.innerText = "❌ No hay parches disponibles actualmente.";
+        }
+      })
+      .catch(() => {
+        aviso.innerText = "❌ No se pudo acceder al archivo de parche.";
+      });
+  }
 </script>
-
-
 </body>
 </html>
