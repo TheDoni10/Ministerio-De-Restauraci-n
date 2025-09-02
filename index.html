@@ -196,7 +196,8 @@
   </ul>
   <p>Haz clic en el botón <strong>"Buscar Parche"</strong> para comprobar si hay uno disponible.</p>
   <button class="btn" onclick="comprobarParche()">🔍 Buscar Parche</button>
-  
+
+  <div id="estadoParche" class="oculto" style="margin-top:15px;"></div>
   <div id="notificacionParche" class="notificacion oculto">
     <p>🔧 Hay un parche disponible. ¿Quieres descargarlo?</p>
     <button class="btn" onclick="descargarParche()">✅ Descargar</button>
@@ -207,55 +208,53 @@
     <div class="spinner"></div>
     <p>Descargando parche...</p>
   </div>
-
-  <div id="avisoParche" style="margin-top: 15px; color: #f99;"></div>
 </div>
 
 <style>
-  .btn {
-    padding: 8px 15px;
-    margin: 5px;
-    background: #2d89ef;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .btn:hover { background: #1e5fbf; }
-  .btn-rojo { background: #d9534f; }
-  .btn-rojo:hover { background: #b52b27; }
   .notificacion {
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #eee;
   }
-  .oculto { display: none; }
-  .carga {
-    margin-top: 20px;
-    text-align: center;
-  }
-  .spinner {
-    margin: 10px auto;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #ddd;
-    border-top: 4px solid #2d89ef;
-    border-radius: 50%;
-    animation: girar 1s linear infinite;
-  }
-  @keyframes girar {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  #estadoParche {
+    color: #00d9ff;
+    font-weight: bold;
   }
 </style>
 
 <script>
 function comprobarParche() {
-  // Aquí podrías validar con un servidor si hay parches reales.
-  // Por ahora simulamos que sí hay parche disponible.
-  document.getElementById("notificacionParche").classList.remove("oculto");
+  const estado = document.getElementById("estadoParche");
+  const noti = document.getElementById("notificacionParche");
+  const aviso = document.getElementById("avisoParche");
+
+  // Reset
+  estado.classList.remove("oculto");
+  noti.classList.add("oculto");
+  aviso.innerText = "";
+
+  // Mostrar "buscando..."
+  estado.innerHTML = "🔍 Buscando parches...";
+  
+  // Simular espera de 5 segundos
+  setTimeout(() => {
+    // Verificar si el archivo existe
+    fetch(archivos.parche, { method: "HEAD" })
+      .then(resp => {
+        if (resp.ok) {
+          estado.innerHTML = "✅ Parche encontrado";
+          noti.classList.remove("oculto");
+        } else {
+          estado.innerHTML = "❌ No se encontró ningún parche disponible.";
+        }
+      })
+      .catch(() => {
+        estado.innerHTML = "❌ Error al comprobar el parche.";
+      });
+  }, 5000);
 }
 
 function cerrarNotificacion() {
@@ -263,19 +262,22 @@ function cerrarNotificacion() {
 }
 
 function descargarParche() {
-  // Ocultar notificación
   cerrarNotificacion();
-  // Mostrar animación de carga
-  document.getElementById("animacionCarga").classList.remove("oculto");
+  const carga = document.getElementById("animacionCarga");
+  carga.classList.remove("oculto");
 
-  // Simular tiempo de descarga (3 segundos)
   setTimeout(() => {
-    document.getElementById("animacionCarga").classList.add("oculto");
-    // Aquí pones el link real del parche
-    window.location.href = "https://tuservidor.com/parches/DonvoltexPatch.exe";
+    carga.classList.add("oculto");
+    const link = document.createElement("a");
+    link.href = archivos.parche;
+    link.setAttribute("download", "ParcheDonVotex.exe");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }, 3000);
 }
 </script>
+
 
   <h2>Novedades</h2>
   <ul>
@@ -372,4 +374,5 @@ function descargarParche() {
 </script>
 </body>
 </html>
+
 
