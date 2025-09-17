@@ -3,74 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagar con PayPal</title>
+    <title>Pagar $15 USD con PayPal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            background: #f9f9f9;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        #paypal-button-container {
-            margin-top: 20px;
-        }
-        .info {
+        .container {
             background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
             text-align: center;
+        }
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        p {
+            margin-bottom: 25px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="info">
+    <div class="container">
         <h1>Paga tu producto</h1>
-        <p>Precio: <strong>$10 USD</strong></p>
-        <!-- Contenedor del botón PayPal -->
-        <div id="paypal-button-container"></div>
+        <p>Precio: <strong>$15 USD</strong></p>
+
+        <!-- Contenedor del botón -->
+        <div id="paypal-container-4JA6XLTLUBSSA"></div>
     </div>
 
-    <!-- Script PayPal -->
+    <!-- SDK de PayPal -->
     <script src="https://www.paypal.com/sdk/js?client-id=BAARoNYbEqvX-xrLVuEjKm15nLPEuI7yx4RqsnHwouncS3laVQQeRi_9AcGLDEYalJU4iK5_2I4LAbd4bY&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 
+    <!-- Botón Hosted -->
     <script>
-        paypal.Buttons({
-            style: {
-                layout: 'vertical',
-                color:  'gold',
-                shape:  'rect',
-                label:  'paypal'
-            },
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '10.00' // Precio del producto
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Pago completado por ' + details.payer.name.given_name + '!');
-                });
-            },
-            onCancel: function (data) {
-                alert('Pago cancelado');
-            },
-            onError: function(err) {
-                alert('Ocurrió un error: ' + err);
-            }
-        }).render('#paypal-button-container');
+        paypal.HostedButtons({
+            hostedButtonId: "4JA6XLTLUBSSA",
+        }).render("#paypal-container-4JA6XLTLUBSSA");
     </script>
 </body>
 </html>
