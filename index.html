@@ -1,136 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doni B. - Portafolio</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-    /* Reset y base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #333; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Contenedor principal */
-    .container { max-width: 1000px; margin: 50px auto; padding: 20px; }
-
-    /* Header */
-    header { text-align: center; margin-bottom: 40px; }
-    header h1 { font-size: 3em; color: #ff6f61; margin-bottom: 5px; animation: fadeInDown 1s ease; }
-    header p { font-size: 1.2em; color: #555; animation: fadeInDown 1.2s ease; }
-    header .location { margin-top: 5px; font-size: 0.9em; color: #777; }
-
-    /* Sección de perfil */
-    .profile { display: flex; flex-direction: column; gap: 25px; }
-    .section { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); animation: fadeInUp 1s ease; }
-    .section h2 { color: #ff6f61; margin-bottom: 15px; }
-
-    /* Listas */
-    ul { list-style: none; padding-left: 0; }
-    ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-    ul li::before { content: '🔹'; position: absolute; left: 0; }
-
-    /* Botón PayPal */
-    .paypal-btn { text-align: center; margin-top: 20px; }
+  <meta charset="UTF-8">
+  <title>Tienda Digital</title>
+  <!-- SDK de PayPal -->
+  <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #ffe600;
+      padding: 15px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      animation: slideDown 0.6s ease;
+    }
+    header span {
+      margin-left: 10px;
+      font-size: 18px;
+      font-weight: normal;
+    }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: scale(0.95);
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: transform 0.4s;
+    }
+    .card img:hover {
+      transform: scale(1.05);
+    }
+    .card h2 {
+      margin: 10px 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .price {
+      font-size: 22px;
+      color: #2e7d32;
+      margin: 10px 0 20px;
+      font-weight: bold;
+    }
+    #paypal-button-container {
+      margin-top: 20px;
+      transform: scale(0.95);
+      animation: fadeIn 1.2s ease forwards 0.6s;
+    }
 
     /* Animaciones */
-    @keyframes fadeInDown { from { opacity:0; transform: translateY(-20px);} to {opacity:1; transform: translateY(0);} }
-    @keyframes fadeInUp { from { opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
-
-    /* Responsive */
-    @media(max-width:700px) { .profile { flex-direction: column; } }
-</style>
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { transform: translateY(50px) scale(0.9); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <!-- Header -->
-    <header>
-        <h1>Doni B.</h1>
-        <p>@DonTech34</p>
-        <div class="location">🇨🇴 Colombia ・ 12:13 p.m.</div>
-        <div class="rate">💰 $25 USD / hora</div>
-    </header>
+  <header>
+    🛒 Doni Store <span>| Tu compra segura con PayPal</span>
+  </header>
 
-    <!-- Perfil -->
-    <div class="profile">
-
-        <!-- Sobre mí -->
-        <div class="section">
-            <h2>Sobre mí</h2>
-            <p>Soy un joven creativo con experiencia en el desarrollo de proyectos de diseño gráfico y diseño web, enfocado en crear soluciones visuales modernas y funcionales.</p>
-        </div>
-
-        <!-- Diseño Gráfico -->
-        <div class="section">
-            <h2>Diseño Gráfico</h2>
-            <ul>
-                <li>Manejo de Photoshop, Illustrator y Canva para logos, flyers y banners.</li>
-                <li>Edición y mejora de fotografías adaptadas a redes y formatos profesionales.</li>
-                <li>Creación de identidades visuales coherentes y atractivas.</li>
-            </ul>
-        </div>
-
-        <!-- Diseño Web -->
-        <div class="section">
-            <h2>Diseño Web</h2>
-            <ul>
-                <li>Desarrollo de páginas web con HTML, CSS y JavaScript, estilo moderno tipo Netflix.</li>
-                <li>Integración de secciones dinámicas: transmisiones en vivo, reproductores multimedia, juegos interactivos y noticias.</li>
-                <li>Optimización para PC, tablets y celulares.</li>
-                <li>Publicación de sitios en plataformas como Netlify.</li>
-            </ul>
-        </div>
-
-        <!-- Otros -->
-        <div class="section">
-            <h2>Otros</h2>
-            <ul>
-                <li>Creación de intros animadas, presentaciones y diseños para ministerios o marcas personales.</li>
-                <li>Proyectos cristianos, educativos y tecnológicos.</li>
-                <li>Autodidacta, responsable y con disposición de aprendizaje continuo.</li>
-            </ul>
-        </div>
-
-        <!-- Botón de pago PayPal -->
-        <div class="paypal-btn">
-            <h2>Pagar por hora</h2>
-            <div id="paypal-button-container"></div>
-        </div>
-
+  <main>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x250.png?text=Producto+Digital" alt="Producto">
+      <h2>Archivo Premium</h2>
+      <p>Accede a tu archivo digital al instante después del pago.</p>
+      <div class="price">$5 USD</div>
+      <div id="paypal-button-container"></div>
     </div>
-</div>
+  </main>
 
-<!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAARoNYbEqvX-xrLVuEjKm15nLPEuI7yx4RqsnHwouncS3laVQQeRi_9AcGLDEYalJU4iK5_2I4LAbd4bY&currency=USD"></script>
-
-<script>
-paypal.Buttons({
-    style: {
-        layout: 'vertical',
-        color:  'gold',
-        shape:  'rect',
-        label:  'paypal'
-    },
-    createOrder: function(data, actions) {
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
         return actions.order.create({
-            purchase_units: [{
-                amount: { value: '25.00' }
-            }]
+          purchase_units: [{
+            amount: {
+              value: '5.00' // 💲 Precio del archivo
+            },
+            description: "Archivo digital premium"
+          }]
         });
-    },
-    onApprove: function(data, actions) {
+      },
+      onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
-            alert('Pago completado por ' + details.payer.name.given_name + '!');
+          alert('✅ Gracias ' + details.payer.name.given_name + 
+                '! Tu pago fue exitoso.');
+          // 🔽 Aquí rediriges al archivo
+          window.location.href = "archivos/mi-archivo.zip";
         });
-    },
-    onCancel: function (data) {
-        alert('Pago cancelado');
-    },
-    onError: function(err) {
-        alert('Ocurrió un error: ' + err);
-    }
-}).render('#paypal-button-container');
-</script>
+      }
+    }).render('#paypal-button-container');
+  </script>
 </body>
 </html>
