@@ -3,57 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pago Exitoso</title>
+  <title>Gracias por su compra</title>
   <style>
     body {
-      background: #f3f4f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
     }
-    .mensaje {
-      background: white;
-      padding: 40px;
-      border-radius: 15px;
+    .contenedor {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       text-align: center;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      animation: zoomIn 0.8s ease;
+      width: 90%;
+      max-width: 400px;
     }
-    .mensaje h1 {
-      color: green;
-      margin-bottom: 20px;
+    h2 {
+      color: #333;
     }
-    .mensaje p {
-      margin: 10px 0;
-      color: #444;
-    }
-    .mensaje a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #3483fa;
-      color: white;
-      text-decoration: none;
+    .barra {
+      width: 100%;
+      background: #ddd;
       border-radius: 8px;
-      transition: 0.3s;
+      overflow: hidden;
+      margin: 20px 0;
+      height: 25px;
     }
-    .mensaje a:hover {
-      background: #2968c8;
+    .progreso {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #0070ba, #00c6ff);
+      transition: width 0.3s ease;
     }
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    #mensajeFinal {
+      display: none;
+      font-size: 18px;
+      color: green;
+      margin-top: 15px;
+    }
+    #descarga {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #0070ba;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    #descarga:hover {
+      background: #005c99;
     }
   </style>
 </head>
 <body>
-  <div class="mensaje">
-    <h1>✅ Pago Exitoso</h1>
-    <p>¡Gracias por tu compra! Tu pago fue procesado correctamente.</p>
-    <p>Puedes descargar tu producto aquí:</p>
-    <a href="archivos/miProducto.zip" download>📥 Descargar Producto</a>
+  <div class="contenedor">
+    <h2>Procesando tu compra...</h2>
+    <div class="barra"><div class="progreso" id="progreso"></div></div>
+    <p id="porcentaje">0%</p>
+    <p id="mensajeFinal">✅ ¡Gracias por su compra!</p>
+    <a id="descarga" href="#" download>⬇️ Descargar producto</a>
   </div>
+
+  <script>
+    // Links de productos (agrega más con su ID o nombre)
+    const productos = {
+      "100": "https://www.dropbox.com/scl/fi/qv6hnn0ogpitoqwo2n4v5/Votaciones.zip?rlkey=07ldugrhm6e4yacfevc26js0r&st=ya20tlvd&dl=1", 
+      "Mouse Gamer": "https://www.dropbox.com/s/example/mouse.zip?dl=1"
+    };
+
+    // Obtener parámetros de la URL (ej: ?id=100 o ?item=Mouse%20Gamer)
+    const params = new URLSearchParams(window.location.search);
+    const idProducto = params.get("id") || params.get("item");
+
+    // Simulación barra de progreso
+    let progreso = 0;
+    const barra = document.getElementById("progreso");
+    const porcentaje = document.getElementById("porcentaje");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+    const btnDescarga = document.getElementById("descarga");
+
+    const intervalo = setInterval(() => {
+      progreso += 5;
+      barra.style.width = progreso + "%";
+      porcentaje.textContent = progreso + "%";
+
+      if (progreso >= 100) {
+        clearInterval(intervalo);
+        mensajeFinal.style.display = "block";
+        
+        // Mostrar link de descarga SOLO del producto comprado
+        if (productos[idProducto]) {
+          btnDescarga.style.display = "inline-block";
+          btnDescarga.href = productos[idProducto];
+        }
+      }
+    }, 200);
+  </script>
 </body>
 </html>
