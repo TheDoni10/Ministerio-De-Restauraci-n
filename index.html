@@ -3,135 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda Doni - PayPal</title>
+  <title>Tienda con PayPal</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #f3f4f6;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #222;
-      color: #fff;
       padding: 20px;
       text-align: center;
     }
-    .contenedor {
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* Buscador */
+    #buscador {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #0070ba;
+      border-radius: 8px;
+      outline: none;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+    #buscador:focus {
+      border-color: #003087;
+      box-shadow: 0 0 8px #0070ba;
+    }
+
+    /* Productos */
+    .contenedor-productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
     }
+
     .producto {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: white;
       padding: 15px;
-      text-align: center;
-      transition: transform 0.3s;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: aparecer 0.8s forwards;
     }
+
     .producto:hover {
       transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
+
     .producto img {
-      max-width: 100%;
-      border-radius: 8px;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
     }
+
     .producto h3 {
-      margin: 10px 0;
-      font-size: 18px;
+      margin: 10px 0 5px;
     }
+
     .producto p {
-      font-size: 16px;
+      margin: 0 0 10px;
       color: #444;
     }
-    input[type="submit"] {
+
+    /* Animación */
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Botón PayPal */
+    .producto input[type="submit"] {
       background: #0070ba;
       color: white;
       border: none;
       padding: 10px 15px;
-      font-size: 14px;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
+      transition: 0.3s;
     }
-    input[type="submit"]:hover {
-      background: #005c99;
+
+    .producto input[type="submit"]:hover {
+      background: #003087;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🛒 Tienda Doni</h1>
-  <p>Paga fácil y seguro con PayPal</p>
-</header>
+  <h1>🛒 Mi Tienda</h1>
+  <input type="number" id="buscador" placeholder="Buscar por ID (ej: 100)">
 
-<div class="contenedor">
+  <div class="contenedor-productos">
+    <!-- Producto 1 -->
+    <div class="producto" data-id="100">
+      <img src="img/prod1.jpg" alt="Mouse Gamer">
+      <h3>Mouse Gamer</h3>
+      <p>ID: 100</p>
+      <p>Precio: $25 USD</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="business" value="donibeltran46@gmail.com">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="item_name" value="Mouse Gamer">
+        <input type="hidden" name="amount" value="25.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Comprar con PayPal">
+      </form>
+    </div>
 
-  <!-- Producto 1 -->
-  <div class="producto">
-    <img src="img/prod1.jpg" alt="Auriculares Gamer RGB">
-    <h3>Auriculares Gamer RGB</h3>
-    <p>Precio: $25 USD</p>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="business" value="donibeltran46@gmail.com">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="item_name" value="Auriculares Gamer RGB">
-      <input type="hidden" name="amount" value="25.00">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="submit" value="Comprar con PayPal">
-    </form>
+    <!-- Producto 2 -->
+    <div class="producto" data-id="101">
+      <img src="img/prod2.jpg" alt="Teclado Mecánico">
+      <h3>Teclado Mecánico</h3>
+      <p>ID: 101</p>
+      <p>Precio: $40 USD</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="business" value="donibeltran46@gmail.com">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="item_name" value="Teclado Mecánico">
+        <input type="hidden" name="amount" value="40.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Comprar con PayPal">
+      </form>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="producto" data-id="102">
+      <img src="img/prod3.jpg" alt="Audífonos Gamer">
+      <h3>Audífonos Gamer</h3>
+      <p>ID: 102</p>
+      <p>Precio: $35 USD</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="business" value="donibeltran46@gmail.com">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="item_name" value="Audífonos Gamer">
+        <input type="hidden" name="amount" value="35.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Comprar con PayPal">
+      </form>
+    </div>
   </div>
 
-  <!-- Producto 2 -->
-  <div class="producto">
-    <img src="img/prod2.jpg" alt="Teclado Mecánico">
-    <h3>Teclado Mecánico</h3>
-    <p>Precio: $40 USD</p>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="business" value="donibeltran46@gmail.com">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="item_name" value="Teclado Mecánico">
-      <input type="hidden" name="amount" value="40.00">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="submit" value="Comprar con PayPal">
-    </form>
-  </div>
-
-  <!-- Producto 3 -->
-  <div class="producto">
-    <img src="img/prod3.jpg" alt="Mouse Gamer">
-    <h3>Mouse Gamer</h3>
-    <p>Precio: $20 USD</p>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="business" value="donibeltran46@gmail.com">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="item_name" value="Mouse Gamer">
-      <input type="hidden" name="amount" value="20.00">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="submit" value="Comprar con PayPal">
-    </form>
-  </div>
-
-  <!-- Producto 4 -->
-  <div class="producto">
-    <img src="img/prod4.jpg" alt="Monitor Full HD">
-    <h3>Monitor Full HD</h3>
-    <p>Precio: $120 USD</p>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="business" value="donibeltran46@gmail.com">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="item_name" value="Monitor Full HD">
-      <input type="hidden" name="amount" value="120.00">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="submit" value="Comprar con PayPal">
-    </form>
-  </div>
-
-  <!-- Aquí seguirías igual hasta el producto 20 -->
-  
-</div>
+  <script>
+    // Buscador por ID
+    document.getElementById("buscador").addEventListener("input", function() {
+      const valor = this.value.trim();
+      const productos = document.querySelectorAll(".producto");
+      
+      productos.forEach(prod => {
+        if (valor === "" || prod.dataset.id === valor) {
+          prod.style.display = "block";
+        } else {
+          prod.style.display = "none";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
