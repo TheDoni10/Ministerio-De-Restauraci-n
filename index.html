@@ -111,23 +111,23 @@
 
   <input type="number" id="buscador" placeholder="Buscar por ID (ej: 100)">
 
-  <div class="contenedor-productos">
-    <!-- Producto 1 -->
-    <div class="producto" data-id="100">
-      <img src="img/prod1.jpg" alt="Mouse Gamer">
-      <h3>Mouse Gamer</h3>
-      <p>ID: 100</p>
-      <p>Precio: $25 USD</p>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="business" value="donibeltran46@gmail.com">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="item_name" value="Mouse Gamer">
-        <input type="hidden" name="amount" value="25.00">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
-        <input type="submit" value="Comprar con PayPal">
-      </form>
-    </div>
+ <div class="producto" data-id="100">
+  <img src="img/votaciones.jpg" alt="Sistema de Votaciones Escolares">
+  <h3>Sistema de Votaciones Escolares</h3>
+  <p>ID: 100</p>
+  <p>Precio: $50 USD</p>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="business" value="donibeltran46@gmail.com">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="item_name" value="Sistema de Votaciones Escolares">
+    <input type="hidden" name="amount" value="50.00">
+    <input type="hidden" name="currency_code" value="USD">
+    <!-- al pagar, regresa con el ID del producto -->
+    <input type="hidden" name="return" value="https://tusitio.com/gracias.html?producto=100">
+    <input type="submit" value="Comprar con PayPal">
+  </form>
+</div>
+
 
     <!-- Producto 2 -->
     <div class="producto" data-id="101">
@@ -182,3 +182,4 @@
 
 </body>
 </html>
+
