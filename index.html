@@ -2,128 +2,171 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Tienda Digital</title>
-  <!-- SDK de PayPal -->
+  <title>Mini Tienda - Doni B.</title>
   <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD"></script>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f5f5f5;
       color: #333;
     }
+
     header {
-      background: #ffe600;
-      padding: 15px 40px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #333;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      animation: slideDown 0.6s ease;
-    }
-    header span {
-      margin-left: 10px;
-      font-size: 18px;
-      font-weight: normal;
-    }
-    main {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: calc(100vh - 80px);
+      background: #ffce00;
+      color: #222;
       padding: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 400px;
-      width: 100%;
       text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      transform: scale(0.95);
-      opacity: 0;
-      animation: fadeInUp 0.8s forwards;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      transition: transform 0.4s;
-    }
-    .card img:hover {
-      transform: scale(1.05);
-    }
-    .card h2 {
-      margin: 10px 0;
-      font-size: 24px;
+      font-size: 1.8em;
       font-weight: bold;
-    }
-    .price {
-      font-size: 22px;
-      color: #2e7d32;
-      margin: 10px 0 20px;
-      font-weight: bold;
-    }
-    #paypal-button-container {
-      margin-top: 20px;
-      transform: scale(0.95);
-      animation: fadeIn 1.2s ease forwards 0.6s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Animaciones */
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 30px;
     }
-    @keyframes fadeInUp {
-      from { transform: translateY(50px) scale(0.9); opacity: 0; }
-      to { transform: translateY(0) scale(1); opacity: 1; }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.8s ease;
     }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.3em;
+      color: #222;
+    }
+
+    .desc {
+      font-size: 0.95em;
+      margin: 10px 0;
+      color: #666;
+    }
+
+    .price {
+      font-size: 1.2em;
+      color: #e60023;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .paypal-btn {
+      margin-top: 10px;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <header>
-    🛒 Doni Store <span>| Tu compra segura con PayPal</span>
-  </header>
+  <header>🛒 Tienda Digital - Doni B.</header>
 
-  <main>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x250.png?text=Producto+Digital" alt="Producto">
-      <h2>Archivo Premium</h2>
-      <p>Accede a tu archivo digital al instante después del pago.</p>
-      <div class="price">$5 USD</div>
-      <div id="paypal-button-container"></div>
-    </div>
-  </main>
+  <main id="productos-container"></main>
 
   <script>
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '5.00' // 💲 Precio del archivo
-            },
-            description: "Archivo digital premium"
-          }]
-        });
+    // Lista de productos (fácil de ampliar)
+    const productos = [
+      {
+        id: "prod1",
+        nombre: "Archivo Premium 1",
+        descripcion: "Plantilla web moderna lista para editar.",
+        precio: "5.00",
+        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+1",
+        archivo: "archivos/archivo1.zip"
       },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('✅ Gracias ' + details.payer.name.given_name + 
-                '! Tu pago fue exitoso.');
-          // 🔽 Aquí rediriges al archivo
-          window.location.href = "archivos/mi-archivo.zip";
-        });
+      {
+        id: "prod2",
+        nombre: "Archivo Premium 2",
+        descripcion: "Guía en PDF con trucos de diseño gráfico.",
+        precio: "10.00",
+        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+2",
+        archivo: "archivos/archivo2.zip"
+      },
+      {
+        id: "prod3",
+        nombre: "Archivo Premium 3",
+        descripcion: "Colección de recursos multimedia exclusivos.",
+        precio: "15.00",
+        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+3",
+        archivo: "archivos/archivo3.zip"
       }
-    }).render('#paypal-button-container');
+      {
+  id: "prod4",
+  nombre: "Archivo Premium 4",
+  descripcion: "Nuevo paquete de edición profesional.",
+  precio: "20.00",
+  imagen: "https://via.placeholder.com/400x250.png?text=Archivo+4",
+  archivo: "archivos/archivo4.zip"
+}
+
+    ];
+
+    const contenedor = document.getElementById("productos-container");
+
+    // Renderizar productos dinámicamente
+    productos.forEach(prod => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${prod.imagen}" alt="${prod.nombre}">
+        <div class="card-content">
+          <h2>${prod.nombre}</h2>
+          <p class="desc">${prod.descripcion}</p>
+          <div class="price">$${prod.precio} USD</div>
+          <div id="paypal-${prod.id}" class="paypal-btn"></div>
+        </div>
+      `;
+      contenedor.appendChild(card);
+
+      // Crear botón PayPal para cada producto
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color:  'gold',
+          shape:  'rect',
+          label:  'paypal'
+        },
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: { value: prod.precio },
+              description: prod.nombre
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert("✅ Gracias " + details.payer.name.given_name +
+                  ", tu pago por " + prod.nombre + " fue exitoso.");
+            // Redirigir al archivo correspondiente
+            window.location.href = prod.archivo;
+          });
+        }
+      }).render(`#paypal-${prod.id}`);
+    });
   </script>
 </body>
 </html>
