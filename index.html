@@ -3,74 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda con PayPal</title>
+  <title>Tienda - Estilo Mercado Libre</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       background: #f3f4f6;
-      margin: 0;
-      padding: 20px;
+    }
+
+    header {
+      background: #fff159;
+      padding: 15px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    h1 {
-      margin-bottom: 20px;
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
     }
 
-    /* Buscador */
     #buscador {
-      padding: 10px;
+      margin: 20px auto;
+      display: block;
       width: 250px;
-      border: 2px solid #0070ba;
+      padding: 10px;
+      border: 2px solid #3483fa;
       border-radius: 8px;
       outline: none;
-      margin-bottom: 20px;
       transition: 0.3s;
     }
     #buscador:focus {
-      border-color: #003087;
-      box-shadow: 0 0 8px #0070ba;
+      border-color: #2968c8;
+      box-shadow: 0 0 8px #3483fa;
     }
 
-    /* Productos */
     .contenedor-productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+      padding: 20px;
     }
 
     .producto {
       background: white;
+      border-radius: 12px;
       padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
-      transform: translateY(50px);
-      animation: aparecer 0.8s forwards;
+      transform: translateY(30px);
+      animation: aparecer 0.6s forwards;
     }
 
     .producto:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }
 
     .producto img {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 10px;
       margin-bottom: 10px;
     }
 
     .producto h3 {
       margin: 10px 0 5px;
+      font-size: 18px;
+      color: #333;
     }
 
     .producto p {
-      margin: 0 0 10px;
-      color: #444;
+      margin: 5px 0;
+      color: #555;
     }
 
-    /* Animación */
     @keyframes aparecer {
       to {
         opacity: 1;
@@ -78,25 +86,29 @@
       }
     }
 
-    /* Botón PayPal */
     .producto input[type="submit"] {
-      background: #0070ba;
+      background: #3483fa;
       color: white;
       border: none;
       padding: 10px 15px;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
       transition: 0.3s;
+      width: 100%;
     }
 
     .producto input[type="submit"]:hover {
-      background: #003087;
+      background: #2968c8;
     }
   </style>
 </head>
 <body>
 
-  <h1>🛒 Mi Tienda</h1>
+  <header>
+    <h1>🛒 Tienda - Doni Shop</h1>
+  </header>
+
   <input type="number" id="buscador" placeholder="Buscar por ID (ej: 100)">
 
   <div class="contenedor-productos">
@@ -112,6 +124,7 @@
         <input type="hidden" name="item_name" value="Mouse Gamer">
         <input type="hidden" name="amount" value="25.00">
         <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
         <input type="submit" value="Comprar con PayPal">
       </form>
     </div>
@@ -128,6 +141,7 @@
         <input type="hidden" name="item_name" value="Teclado Mecánico">
         <input type="hidden" name="amount" value="40.00">
         <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
         <input type="submit" value="Comprar con PayPal">
       </form>
     </div>
@@ -144,6 +158,7 @@
         <input type="hidden" name="item_name" value="Audífonos Gamer">
         <input type="hidden" name="amount" value="35.00">
         <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
         <input type="submit" value="Comprar con PayPal">
       </form>
     </div>
