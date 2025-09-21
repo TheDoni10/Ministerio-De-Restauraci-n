@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago Exitoso</title>
+  <style>
+    body {
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .mensaje {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      animation: zoomIn 0.8s ease;
+    }
+    .mensaje h1 {
+      color: green;
+      margin-bottom: 20px;
+    }
+    .mensaje p {
+      margin: 10px 0;
+      color: #444;
+    }
+    .mensaje a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #3483fa;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .mensaje a:hover {
+      background: #2968c8;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje">
+    <h1>✅ Pago Exitoso</h1>
+    <p>¡Gracias por tu compra! Tu pago fue procesado correctamente.</p>
+    <p>Puedes descargar tu producto aquí:</p>
+    <a href="archivos/miProducto.zip" download>📥 Descargar Producto</a>
+  </div>
+</body>
+</html>
