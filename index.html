@@ -2,171 +2,136 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mini Tienda - Doni B.</title>
-  <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Doni - PayPal</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       background: #f5f5f5;
-      color: #333;
+      margin: 0;
+      padding: 0;
     }
-
     header {
-      background: #ffce00;
-      color: #222;
+      background: #222;
+      color: #fff;
       padding: 20px;
       text-align: center;
-      font-size: 1.8em;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
-    main {
+    .contenedor {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      padding: 30px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeIn 0.8s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .card-content {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       padding: 20px;
     }
-
-    .card h2 {
-      margin: 0;
-      font-size: 1.3em;
-      color: #222;
+    .producto {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s;
     }
-
-    .desc {
-      font-size: 0.95em;
+    .producto:hover {
+      transform: scale(1.05);
+    }
+    .producto img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .producto h3 {
       margin: 10px 0;
-      color: #666;
+      font-size: 18px;
     }
-
-    .price {
-      font-size: 1.2em;
-      color: #e60023;
-      margin-bottom: 15px;
-      font-weight: bold;
+    .producto p {
+      font-size: 16px;
+      color: #444;
     }
-
-    .paypal-btn {
-      margin-top: 10px;
+    input[type="submit"] {
+      background: #0070ba;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px);}
-      to { opacity: 1; transform: translateY(0);}
+    input[type="submit"]:hover {
+      background: #005c99;
     }
   </style>
 </head>
 <body>
-  <header>🛒 Tienda Digital - Doni B.</header>
 
-  <main id="productos-container"></main>
+<header>
+  <h1>🛒 Tienda Doni</h1>
+  <p>Paga fácil y seguro con PayPal</p>
+</header>
 
-  <script>
-    // Lista de productos (fácil de ampliar)
-    const productos = [
-      {
-        id: "prod1",
-        nombre: "Archivo Premium 1",
-        descripcion: "Plantilla web moderna lista para editar.",
-        precio: "5.00",
-        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+1",
-        archivo: "archivos/archivo1.zip"
-      },
-      {
-        id: "prod2",
-        nombre: "Archivo Premium 2",
-        descripcion: "Guía en PDF con trucos de diseño gráfico.",
-        precio: "10.00",
-        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+2",
-        archivo: "archivos/archivo2.zip"
-      },
-      {
-        id: "prod3",
-        nombre: "Archivo Premium 3",
-        descripcion: "Colección de recursos multimedia exclusivos.",
-        precio: "15.00",
-        imagen: "https://via.placeholder.com/400x250.png?text=Archivo+3",
-        archivo: "archivos/archivo3.zip"
-      }
-      {
-  id: "prod4",
-  nombre: "Archivo Premium 4",
-  descripcion: "Nuevo paquete de edición profesional.",
-  precio: "20.00",
-  imagen: "https://via.placeholder.com/400x250.png?text=Archivo+4",
-  archivo: "archivos/archivo4.zip"
-}
+<div class="contenedor">
 
-    ];
+  <!-- Producto 1 -->
+  <div class="producto">
+    <img src="img/prod1.jpg" alt="Auriculares Gamer RGB">
+    <h3>Auriculares Gamer RGB</h3>
+    <p>Precio: $25 USD</p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="business" value="donibeltran46@gmail.com">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="item_name" value="Auriculares Gamer RGB">
+      <input type="hidden" name="amount" value="25.00">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" value="Comprar con PayPal">
+    </form>
+  </div>
 
-    const contenedor = document.getElementById("productos-container");
+  <!-- Producto 2 -->
+  <div class="producto">
+    <img src="img/prod2.jpg" alt="Teclado Mecánico">
+    <h3>Teclado Mecánico</h3>
+    <p>Precio: $40 USD</p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="business" value="donibeltran46@gmail.com">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="item_name" value="Teclado Mecánico">
+      <input type="hidden" name="amount" value="40.00">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" value="Comprar con PayPal">
+    </form>
+  </div>
 
-    // Renderizar productos dinámicamente
-    productos.forEach(prod => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${prod.imagen}" alt="${prod.nombre}">
-        <div class="card-content">
-          <h2>${prod.nombre}</h2>
-          <p class="desc">${prod.descripcion}</p>
-          <div class="price">$${prod.precio} USD</div>
-          <div id="paypal-${prod.id}" class="paypal-btn"></div>
-        </div>
-      `;
-      contenedor.appendChild(card);
+  <!-- Producto 3 -->
+  <div class="producto">
+    <img src="img/prod3.jpg" alt="Mouse Gamer">
+    <h3>Mouse Gamer</h3>
+    <p>Precio: $20 USD</p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="business" value="donibeltran46@gmail.com">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="item_name" value="Mouse Gamer">
+      <input type="hidden" name="amount" value="20.00">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" value="Comprar con PayPal">
+    </form>
+  </div>
 
-      // Crear botón PayPal para cada producto
-      paypal.Buttons({
-        style: {
-          layout: 'vertical',
-          color:  'gold',
-          shape:  'rect',
-          label:  'paypal'
-        },
-        createOrder: function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: { value: prod.precio },
-              description: prod.nombre
-            }]
-          });
-        },
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-            alert("✅ Gracias " + details.payer.name.given_name +
-                  ", tu pago por " + prod.nombre + " fue exitoso.");
-            // Redirigir al archivo correspondiente
-            window.location.href = prod.archivo;
-          });
-        }
-      }).render(`#paypal-${prod.id}`);
-    });
-  </script>
+  <!-- Producto 4 -->
+  <div class="producto">
+    <img src="img/prod4.jpg" alt="Monitor Full HD">
+    <h3>Monitor Full HD</h3>
+    <p>Precio: $120 USD</p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="business" value="donibeltran46@gmail.com">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="item_name" value="Monitor Full HD">
+      <input type="hidden" name="amount" value="120.00">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" value="Comprar con PayPal">
+    </form>
+  </div>
+
+  <!-- Aquí seguirías igual hasta el producto 20 -->
+  
+</div>
+
 </body>
 </html>
