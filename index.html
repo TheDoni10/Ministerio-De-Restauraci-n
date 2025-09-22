@@ -1,82 +1,98 @@
-<!DOCTYPE html>
+<!DOCTYPE html>   
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda - Estilo Mercado Libre</title>
+  <title>Doni Shop</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f1115;
+      color: #e4e6eb;
     }
 
     header {
-      background: #fff159;
-      padding: 15px;
+      background: linear-gradient(135deg, #3d4de5, #5a6cff);
+      padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     header h1 {
       margin: 0;
-      font-size: 24px;
-      color: #333;
+      font-size: 26px;
+      color: #f5f6f7;
+      letter-spacing: 1px;
     }
 
     #buscador {
-      margin: 20px auto;
+      margin: 25px auto;
       display: block;
-      width: 250px;
-      padding: 10px;
-      border: 2px solid #3483fa;
-      border-radius: 8px;
+      width: 320px;
+      padding: 12px;
+      border: 2px solid #5a6cff;
+      border-radius: 10px;
+      background: #1a1c22;
+      color: #f5f6f7;
       outline: none;
       transition: 0.3s;
+      font-size: 16px;
     }
     #buscador:focus {
-      border-color: #2968c8;
-      box-shadow: 0 0 8px #3483fa;
+      border-color: #7687ff;
+      box-shadow: 0 0 10px #5a6cff;
     }
 
     .contenedor-productos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      padding: 25px;
+      max-width: 1300px;
+      margin: auto;
     }
 
     .producto {
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: rgba(32, 35, 42, 0.9);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       transform: translateY(30px);
-      animation: aparecer 0.6s forwards;
+      animation: aparecer 0.7s forwards;
     }
 
     .producto:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
 
     .producto img {
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
+      border-radius: 12px;
+      margin-bottom: 12px;
     }
 
     .producto h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-      color: #333;
+      margin: 8px 0 6px;
+      font-size: 19px;
+      color: #f5f6f7;
     }
 
     .producto p {
-      margin: 5px 0;
-      color: #555;
+      margin: 4px 0;
+      color: #b0b3b8;
+      font-size: 14px;
+    }
+
+    .precio {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00d26a;
+      margin-top: 8px;
     }
 
     @keyframes aparecer {
@@ -86,62 +102,99 @@
       }
     }
 
+    /* Botón PayPal */
     .producto input[type="submit"] {
-      background: #3483fa;
+      background: linear-gradient(135deg, #0070ba, #1546a0);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 20px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       transition: 0.3s;
-      width: 100%;
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 15px;
     }
 
     .producto input[type="submit"]:hover {
-      background: #2968c8;
+      background: linear-gradient(135deg, #005c99, #0f3c7a);
+      transform: scale(1.07);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    /* === SLIDER === */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>🛒 Tienda - Doni Shop</h1>
+    <h1>🛒Doni Shop</h1>
   </header>
 
-  <input type="number" id="buscador" placeholder="Buscar por ID (ej: 100)">
+  <input type="number" id="buscador" placeholder="Ingresa el ID">
 
- <div class="producto" data-id="100">
-  <img src="img/votaciones.jpg" alt="Sistema de Votaciones Escolares">
-  <h3>Sistema de Votaciones Escolares</h3>
-  <p>ID: 100</p>
-  <p>Precio: $50 USD</p>
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="business" value="donibeltran46@gmail.com">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="item_name" value="Sistema de Votaciones Escolares">
-    <input type="hidden" name="amount" value="50.00">
-    <input type="hidden" name="currency_code" value="USD">
-    <!-- al pagar, regresa con el ID del producto -->
-    <input type="hidden" name="return" value="https://tusitio.com/gracias.html?producto=100">
-    <input type="submit" value="Comprar con PayPal">
-  </form>
-</div>
-
+  <div class="contenedor-productos">
+    
+    <!-- Producto 1 con slider -->
+    <div class="producto" data-id="100">
+      <div class="slider">
+        <div class="slides" id="slides">
+          <img src="img/login100.png" alt="Sistema de Votaciones Escolares 1">
+          <img src="img/inicio100.png" alt="Sistema de Votaciones Escolares 2">
+          <img src="img/contraloria100.png" alt="Sistema de Votaciones Escolares 3">
+          <img src="img/Resultados100.png" alt="Sistema de Votaciones Escolares 4">
+        </div>
+      </div>
+      <h3>Sistema de Votaciones Escolares</h3>
+      <p>ID: 100</p>
+      <p class="precio">$50 USD</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="business" value="donibeltran46@gmail.com">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="item_name" value="Sistema de Votaciones Escolares">
+        <input type="hidden" name="amount" value="50.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html?producto=100">
+        <input type="submit" value="Comprar con PayPal">
+      </form>
+    </div>
 
     <!-- Producto 2 -->
     <div class="producto" data-id="101">
       <img src="img/prod2.jpg" alt="Teclado Mecánico">
       <h3>Teclado Mecánico</h3>
       <p>ID: 101</p>
-      <p>Precio: $40 USD</p>
+      <p class="precio">$40 USD</p>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="business" value="donibeltran46@gmail.com">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="item_name" value="Teclado Mecánico">
         <input type="hidden" name="amount" value="40.00">
         <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html?producto=101">
         <input type="submit" value="Comprar con PayPal">
       </form>
     </div>
@@ -151,14 +204,14 @@
       <img src="img/prod3.jpg" alt="Audífonos Gamer">
       <h3>Audífonos Gamer</h3>
       <p>ID: 102</p>
-      <p>Precio: $35 USD</p>
+      <p class="precio">$35 USD</p>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="business" value="donibeltran46@gmail.com">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="item_name" value="Audífonos Gamer">
         <input type="hidden" name="amount" value="35.00">
         <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://tusitio.com/gracias.html">
+        <input type="hidden" name="return" value="https://tusitio.com/gracias.html?producto=102">
         <input type="submit" value="Comprar con PayPal">
       </form>
     </div>
@@ -178,8 +231,19 @@
         }
       });
     });
+
+    // === SLIDER AUTO ===
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+    let index = 0;
+
+    function showNextSlide() {
+      index = (index + 1) % totalSlides;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(showNextSlide, 5000); // cambia cada 5 segundos
   </script>
 
 </body>
 </html>
-
